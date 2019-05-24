@@ -5,7 +5,7 @@ import time
 
 import pigpio
 
-class TackSwitch(object):
+class TactSwitch(object):
     def __init__(self, bcm_pin ,trig, func, mask_time):
         self._pi = pigpio.pi()
         self._bcm_pin = bcm_pin
@@ -25,7 +25,7 @@ if __name__ == "__main__":
     def myprint():
         print("hello")
 
-    b = TackSwitch(17, pigpio.FALLING_EDGE, myprint, 0.1)
+    b = TactSwitch(17, pigpio.FALLING_EDGE, myprint, 0.1)
 
     try:
         while(True):
