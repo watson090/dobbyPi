@@ -10,8 +10,6 @@ REG_IODIRB = 0x01
 REG_OLATA = 0x14
 REG_OLATB = 0x15
 
-
-
 class MCP23017(object):
 
     def __init__(self, bus, slave_addr):
@@ -39,6 +37,9 @@ class MCP23017(object):
     def reset_bit(self,port, pin):
         self._state &= ~(1 << pin)
         self._pi.i2c_write_device(self._mcp23017, [port, self._state])        
+    
+    def print_reg(self):
+        print(bin(self._state))
 
 if __name__ == "__main__":
     gpa1 = MCP23017(1, 0x20)
