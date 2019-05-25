@@ -5,7 +5,6 @@ import time
 
 import pigpio
 
-num = 0
 def main():
     pi = pigpio.pi()
     pi.set_mode(17, pigpio.INPUT)
