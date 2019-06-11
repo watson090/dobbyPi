@@ -25,7 +25,7 @@ if __name__ == "__main__":
     def myprint():
         print("hello")
 
-    b = TactSwitch(17, pigpio.FALLING_EDGE, myprint, 0.1)
+    b = TactSwitch(17, pigpio.FALLING_EDGE, myprint, 0.5)
 
     try:
         while(True):

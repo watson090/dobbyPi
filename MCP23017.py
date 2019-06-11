@@ -47,32 +47,47 @@ if __name__ == "__main__":
     gpa2 = MCP23017(1, 0x21)
     gpb2 = MCP23017(1, 0x21)
 
-
     gpa1.open()
     gpb1.open()
     gpa2.open()
     gpb2.open()
-
 
     gpa1.output_mode(REG_IODIRA)
     gpb1.output_mode(REG_IODIRB)
     gpa2.output_mode(REG_IODIRA)
     gpb2.output_mode(REG_IODIRB)
 
-
     try:
         while(True):
+
             for i in range(8):
                 gpa1.set_bit(REG_OLATA, i)
-                gpb1.set_bit(REG_OLATB, i)
-                gpa2.set_bit(REG_OLATA, i)
-                gpb2.set_bit(REG_OLATB, i)
-            time.sleep(1)
-            for i in range(9):
+                time.sleep(1)
                 gpa1.reset_bit(REG_OLATA, i)
+                time.sleep(1)
+
+            for i in range(8):
+                gpb1.set_bit(REG_OLATB, i)
+                time.sleep(1)
                 gpb1.reset_bit(REG_OLATB, i)
+                time.sleep(1)
+
+            for i in range(8):
+                gpa2.set_bit(REG_OLATA, i)
+                time.sleep(1)
                 gpa2.reset_bit(REG_OLATA, i)
+                time.sleep(1)
+
+            for i in range(8):
+                gpb2.set_bit(REG_OLATB, i)
+                time.sleep(1)
                 gpb2.reset_bit(REG_OLATB, i)
-            time.sleep(1)
+                time.sleep(1)
+
     except KeyboardInterrupt:
+        for i in range(8):
+            gpa1.reset_bit(REG_OLATA, i)
+            gpb1.reset_bit(REG_OLATB, i)
+            gpa2.reset_bit(REG_OLATA, i)
+            gpb2.reset_bit(REG_OLATB, i)
         print("finish")

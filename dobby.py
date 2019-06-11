@@ -102,6 +102,11 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         wif_file.close()
         log.close()
+        for i in range(8):
+            gpa1.reset_bit(MCP23017.REG_OLATA, i)
+            gpb1.reset_bit(MCP23017.REG_OLATB, i)
+            gpa2.reset_bit(MCP23017.REG_OLATA, i)
+            gpb2.reset_bit(MCP23017.REG_OLATB, i)
         gpa1.close()
         gpb1.close()
         gpa2.close()
