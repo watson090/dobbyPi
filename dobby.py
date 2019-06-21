@@ -56,9 +56,12 @@ def set_lift_callback():
     current_line_number += 1
 
     log.write(str(current_line_number) + '\n')
-    print(current_line_number, lifts)
+    print(current_line_number)
+    print(list(lifts))
     for lift in lifts:
         outputLifts[lift-1] = 1
+    print(outputLifts)
+    print('\n')
 
     for i in range(8):
         if outputLifts[i]:
@@ -89,9 +92,6 @@ def set_lift_callback():
             gpb1.reset_bit(MCP23017.REG_OLATB, tableb[i-24])
             time.sleep(sleep_time)
 
-    print(outputLifts)
-    print('\n')
-
 if __name__ == "__main__":
     args = sys.argv
     if(len(args) < 2):
@@ -121,9 +121,13 @@ if __name__ == "__main__":
         log.close()
         for i in range(8):
             gpa1.reset_bit(MCP23017.REG_OLATA, i)
+            time.sleep(sleep_time)
             gpb1.reset_bit(MCP23017.REG_OLATB, i)
+            time.sleep(sleep_time)
             gpa2.reset_bit(MCP23017.REG_OLATA, i)
+            time.sleep(sleep_time)
             gpb2.reset_bit(MCP23017.REG_OLATB, i)
+            time.sleep(sleep_time)
         gpa1.close()
         gpb1.close()
         gpa2.close()
