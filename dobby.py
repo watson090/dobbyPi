@@ -54,13 +54,22 @@ def set_lift_callback():
     data_str = re.split(r"[=,\n]", data)
     lifts = map(int,data_str[1:-1])
     current_line_number += 1
-
+    
     log.write(str(current_line_number) + '\n')
     print(current_line_number)
-    print(list(lifts))
     for lift in lifts:
         outputLifts[lift-1] = 1
     print(outputLifts)
+    
+    tmp = 0
+    ouLift = []
+    for ou in outputLifts:
+        tmp += 1
+        if ou:
+            ouLift.append(tmp)
+    print(ouLift)
+            
+
     print('\n')
 
     for i in range(8):
