@@ -10,7 +10,7 @@ class TactSwitch(object):
         self._pi = pigpio.pi()
         self._bcm_pin = bcm_pin
         self._pi.set_mode(bcm_pin, pigpio.INPUT)
-        self._pi.set_pull_up_down(bcm_pin, pigpio.PUD_OFF
+        self._pi.set_pull_up_down(bcm_pin, pigpio.PUD_OFF)
         self._pi.callback(bcm_pin, trig, self._callback_handler)
 
         self._mask_time = mask_time
