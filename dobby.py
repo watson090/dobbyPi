@@ -19,7 +19,7 @@ gpa1 = MCP23017.MCP23017(1, 0x20)
 gpb1 = MCP23017.MCP23017(1, 0x20)
 gpa2 = MCP23017.MCP23017(1, 0x21)
 gpb2 = MCP23017.MCP23017(1, 0x21)
-sleep_time = 0.03
+sleep_time = 0.01
 
 def init_mcp23017():
     gpa1.open()

@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 import time
@@ -26,7 +26,7 @@ if __name__ == "__main__":
     def myprint():
         print("hello")
 
-    b = TactSwitch(17, pigpio.FALLING_EDGE, myprint, 0.5)
+    b = TactSwitch(17, pigpio.FALLING_EDGE, myprint, 0.1)
 
     try:
         while(True):
