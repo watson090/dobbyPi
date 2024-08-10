@@ -7,6 +7,7 @@ import sys
 import time
 import signal
 import datetime
+import keyboard
 
 import pigpio
 
@@ -33,7 +34,7 @@ def init_mcp23017():
     gpb2.output_mode(MCP23017.REG_IODIRB)
 
 
-def reset_lift_callback():
+def reset_lift_callback(e):
     for i in range(8):
         gpa1.reset_bit(MCP23017.REG_OLATA, i)
         time.sleep(sleep_time)
@@ -44,7 +45,7 @@ def reset_lift_callback():
         gpb2.reset_bit(MCP23017.REG_OLATB, i)
         time.sleep(sleep_time)
 
-def set_lift_callback():
+def set_lift_callback(e):
     global wif_file
     global log
     global current_line_number
@@ -117,14 +118,12 @@ if __name__ == "__main__":
 
     for i in range(current_line_number):
         print(i + 1, wif_file.readline())
-    
-    white_sw = TactSwitch.TactSwitch(17, pigpio.FALLING_EDGE, set_lift_callback  , 0.1)
-    black_sw = TactSwitch.TactSwitch(27, pigpio.FALLING_EDGE, reset_lift_callback, 0.1)
 
+    keyboard.on_press_key('1', set_lift_callback)
+    keyboard.on_press_key('0', reset_lift_callback)
 
     try:
-        while(True):
-            time.sleep(1)
+        keyboard.wait()
     except KeyboardInterrupt:
         wif_file.close()
         log.close()
